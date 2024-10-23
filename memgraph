@@ -1,0 +1,8 @@
+#!/bin/bash
+
+# Live graph of process's memory usage
+# https://stackoverflow.com/questions/7998302/graphing-a-processs-memory-usage
+
+
+while :; do grep -oP '^VmRSS:\s+\K\d+' /proc/$1/status \
+ | numfmt --from-unit Ki --to-unit Mi; sleep 1; done | ttyplot -u Mi
